@@ -18,3 +18,7 @@ class NewUserLocators:
 class AllPetsLocators:
     MY_PETS_BTN = (By.XPATH, "//a[@href='/my_pets']")
     EXIT_BTN = (By.XPATH, "//button[@class='btn btn-outline-secondary']")
+
+class MyPetsLocators:
+    MY_PETS_BTN = (By.XPATH, "//a[@href='/my_pets']")
+    EXIT_BTN = (By.XPATH, "//button[@class='btn btn-outline-secondary']")
