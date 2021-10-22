@@ -1,3 +1,3 @@
-valid_name = "test227"
-valid_email = 'test227@gmail.com'
-valid_password = 'test227'
+valid_name = "test226"
+valid_email = 'test226@gmail.com'
+valid_password = 'test226'
