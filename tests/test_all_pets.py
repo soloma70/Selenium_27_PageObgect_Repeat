@@ -2,6 +2,7 @@ import time
 from selenium.webdriver.common.action_chains import ActionChains
 from pages.url_list import PetFriend
 from pages.all_pets_page import AllPetsPage
+from pages.my_pets_page import MyPetsPage
 from settings import valid_name
 
 
@@ -29,3 +30,12 @@ def test_visit_my_pets(web_driver_with_cookies):
     time.sleep(2)
     assert page.get_relative_link() == '/my_pets', 'Login error'
     assert web_driver_with_cookies.find_element_by_tag_name('h2').text == valid_name, 'Non valid name'
+
+
+def test_exit_visit_all_pets(web_driver_with_cookies):
+    page = MyPetsPage(web_driver_with_cookies)
+    page.exit_btn_click()
+    assert web_driver_with_cookies.find_element_by_xpath(
+        "//button[@class='btn btn-success']").text == 'Зарегистрироваться' \
+        , 'ERROR: ошибка Log Out'
+    time.sleep(3)
