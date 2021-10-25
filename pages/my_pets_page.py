@@ -8,11 +8,15 @@ class MyPetsPage(BasePage):
         super().__init__(driver, timeout)
         # url = os.getenv('LOGIN_URL') or 'https://petfriends1.herokuapp.com/login'
         driver.get(PetFriend.MY_PETS_URL)
-        #self.name = driver.find_element(*MyPetsLocators.MY_PETS_NAME)
+        self.my_pets_btn = driver.find_element(*MyPetsLocators.MY_PETS_BTN)
+        self.name_user = driver.find_element(*MyPetsLocators.MY_PETS_NAME).text
         self.exit_btn = driver.find_element(*MyPetsLocators.EXIT_BTN)
 
-    # def my_pets_btn_click(self):
-    #     self.my_pets_btn.click()
+    def my_pets_click(self):
+        self.my_pets_btn.click()
+
+
+
 
     def exit_btn_click(self):
         self.exit_btn.click()
