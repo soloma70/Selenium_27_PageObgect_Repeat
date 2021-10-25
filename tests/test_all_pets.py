@@ -1,6 +1,5 @@
 import time
 from pages.all_pets_page import AllPetsPage
-from pages.my_pets_page import MyPetsPage
 
 
 def test_visit_all_pets(web_driver_with_cookies):
