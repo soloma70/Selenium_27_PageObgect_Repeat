@@ -20,5 +20,5 @@ class AllPetsPage(BasePage):
         self.my_pets_btn.click()
 
 
-    def exit_click(self):
+    def exit_btn_click(self):
         self.exit_btn.click()
