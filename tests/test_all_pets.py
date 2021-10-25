@@ -30,7 +30,7 @@ def test_data_all_pets(web_driver_with_cookies):
     print('Проверяем, что мы на странице всех питомцев...')
     assert page.get_relative_link() == '/all_pets', 'Ошибка логина'
     print('Ok')
-    print('Проверяем, что есть фото, имя, порода и возраст у питомцев...')
+    print('\nПроверяем, что есть фото, имя, порода и возраст у питомцев...')
     count_name = 0
     all_pets_without_photo = []
     count_photo = 0
@@ -72,9 +72,11 @@ def test_data_all_pets(web_driver_with_cookies):
 
 
 def test_exit_visit_all_pets(web_driver_with_cookies):
-    page = MyPetsPage(web_driver_with_cookies)
+    page = AllPetsPage(web_driver_with_cookies)
     page.exit_btn_click()
+    print('Проверяем Log Out...')
     assert web_driver_with_cookies.find_element_by_xpath(
         "//button[@class='btn btn-success']").text == 'Зарегистрироваться' \
         , 'ERROR: ошибка Log Out'
     time.sleep(3)
+    print('Ok')
