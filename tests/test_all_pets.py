@@ -19,6 +19,7 @@ def test_scroll_all_pets(web_driver_with_cookies):
     web_driver_with_cookies.execute_script("window.scrollTo(document.body.scrollHeight, 0);")
     time.sleep(2)
 
+
 def test_data_all_pets(web_driver_with_cookies):
     """Тест проверяет наличие фото у питомца, наличие имени, возраста и породы"""
     page = AllPetsPage(web_driver_with_cookies)
@@ -56,20 +57,14 @@ def test_data_all_pets(web_driver_with_cookies):
         else:
             all_pets_without_age.append(page.names_all_pets[i].text)
 
-    print(f'Всего питомцев: {len(page.names_all_pets)}, из них с именем {count_name}, с фото: {count_photo}, с породой: {count_type}, с возрастом: {count_age}')
+    print(
+        f'Всего питомцев: {len(page.names_all_pets)}, из них с именем {count_name}, с фото: {count_photo}, с породой: {count_type}, с возрастом: {count_age}')
     print('Нет фото у питомцев: ')
     print(all_pets_without_photo)
     print('Нет породы у питомцев: ')
     print(all_pets_without_type)
     print('Нет возраста у питомцев: ')
     print(all_pets_without_age)
-
-
-def test_visit_my_pets(web_driver_with_cookies):
-    page = MyPetsPage(web_driver_with_cookies)
-    page.my_pets_click()
-    assert page.get_relative_link() == '/my_pets', 'Login error'
-    assert page.name_user == valid_name, 'Non valid name'
 
 
 def test_exit_visit_all_pets(web_driver_with_cookies):
