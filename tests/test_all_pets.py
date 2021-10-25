@@ -4,32 +4,28 @@ from pages.all_pets_page import AllPetsPage
 
 def test_visit_all_pets(web_driver_with_cookies):
     page = AllPetsPage(web_driver_with_cookies)
-    print('\nПроверяем, что мы на странице всех питомцев...')
+    print('\nПроверяем, что мы на странице всех питомцев')
     assert page.get_relative_link() == '/all_pets', 'Ошибка логина'
-    print('Ok')
     time.sleep(3)
 
 
 def test_scroll_all_pets(web_driver_with_cookies):
     page = AllPetsPage(web_driver_with_cookies)
-    print('\nПроверяем, что мы на странице всех питомцев...')
+    print('\nПроверяем, что мы на странице всех питомцев')
     assert page.get_relative_link() == '/all_pets', 'Ошибка логина'
-    print('Ok')
-    print('\nПроверяем скрол вниз и вверх...')
+    print('Проверяем скрол вниз и вверх')
     web_driver_with_cookies.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(2)
     web_driver_with_cookies.execute_script("window.scrollTo(document.body.scrollHeight, 0);")
     time.sleep(2)
-    print('Ok')
 
 
 def test_data_all_pets(web_driver_with_cookies):
     """Тест проверяет наличие фото у питомца, наличие имени, возраста и породы"""
     page = AllPetsPage(web_driver_with_cookies)
-    print('Проверяем, что мы на странице всех питомцев...')
+    print('\nПроверяем, что мы на странице всех питомцев...')
     assert page.get_relative_link() == '/all_pets', 'Ошибка логина'
-    print('Ok')
-    print('\nПроверяем, что есть фото, имя, порода и возраст у питомцев...')
+    print('Проверяем, что есть фото, имя, порода и возраст у питомцев')
     count_name = 0
     all_pets_without_photo = []
     count_photo = 0
@@ -73,9 +69,8 @@ def test_data_all_pets(web_driver_with_cookies):
 def test_exit_visit_all_pets(web_driver_with_cookies):
     page = AllPetsPage(web_driver_with_cookies)
     page.exit_btn_click()
-    print('Проверяем Log Out...')
+    print('\nПроверяем Log Out')
     assert web_driver_with_cookies.find_element_by_xpath(
         "//button[@class='btn btn-success']").text == 'Зарегистрироваться' \
         , 'ERROR: ошибка Log Out'
     time.sleep(3)
-    print('Ok')
