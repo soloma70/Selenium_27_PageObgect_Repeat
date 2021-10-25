@@ -1,8 +1,6 @@
 import time
-from pages.url_list import PetFriend
 from pages.all_pets_page import AllPetsPage
 from pages.my_pets_page import MyPetsPage
-from settings import valid_name
 
 
 def test_visit_all_pets(web_driver_with_cookies):
