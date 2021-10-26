@@ -26,3 +26,8 @@ class MyPetsLocators:
     MY_PETS_BTN = (By.XPATH, "//a[@href='/my_pets']")
     MY_PETS_NAME = (By.TAG_NAME, "h2")
     EXIT_BTN = (By.XPATH, "//button[@class='btn btn-outline-secondary']")
+    MY_PETS_IMAGES = (By.CSS_SELECTOR, 'div#all_my_pets table tbody tr th img')
+    MY_PETS_NAMES = (By.CSS_SELECTOR, 'div#all_my_pets table tbody tr td:nth-of-type(1)')
+    MY_PETS_TYPES = (By.CSS_SELECTOR, 'div#all_my_pets table tbody tr td:nth-of-type(2)')
+    MY_PETS_AGE = (By.CSS_SELECTOR, 'div#all_my_pets table tbody tr td:nth-of-type(3)')
+    MY_PETS_COUNT = (By.CSS_SELECTOR, 'html body div div div')
