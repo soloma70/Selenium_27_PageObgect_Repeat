@@ -66,7 +66,7 @@ def test_show_my_pets(web_driver_with_cookies):
 
 
 def test_add_pet_and_cancel(web_driver_with_cookies):
-    """Тест на странице "Мои питомцы" кликает кнопку "Добавить" и закрывает окно кнопкой "Отмена" """
+    """Тест на странице "Мои питомцы" проверяет окно добавления питомца и закрывает окно кнопкой "Отмена" """
 
     # Переход на страницу "Мои питомцы"
     page = MyPetsPage(web_driver_with_cookies)
@@ -77,7 +77,7 @@ def test_add_pet_and_cancel(web_driver_with_cookies):
 
 
 def test_add_pet_and_cross(web_driver_with_cookies):
-    """Тест на странице "Мои питомцы" кликает кнопку "Добавить" и закрывает окно крестиком """
+    """Тест на странице "Мои питомцы" проверяет окно добавления питомца и закрывает окно крестиком """
 
     # Переход на страницу "Мои питомцы"
     page = MyPetsPage(web_driver_with_cookies)
