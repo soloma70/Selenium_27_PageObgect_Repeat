@@ -13,7 +13,7 @@ def test_visit_my_pets(web_driver_with_cookies):
 
 
 def test_show_my_pets(web_driver_with_cookies):
-    """Тест проверяет загрузку страницы "Мои питомцы", наличие имени, возраста и породы;
+    """Тест на странице "Мои питомцы" проверяет у питомцев наличие имени, возраста и породы;
     в статистике пользователя и в таблице одинаковае количество питомцев;
     хотя бы у половины питомцев есть фото;
     в таблице нет повторяющихся питомцев и повторяющихся имен питомцев"""
@@ -65,15 +65,25 @@ def test_show_my_pets(web_driver_with_cookies):
     assert len(list_my_pets) == len(unique_list_my_pets), 'ERROR: Есть повторяющиеся питомцы'
 
 
-def test_add_pet(web_driver_with_cookies):
-    """Тест проверяет загрузку страницы "Мои питомцы", наличие имени, возраста и породы;
-    добавляет нового питомца с фото, породой и возрастом"""
+def test_add_pet_and_cancel(web_driver_with_cookies):
+    """Тест на странице "Мои питомцы" кликает кнопку "Добавить" и закрывает окно кнопкой "Отмена" """
 
     # Переход на страницу "Мои питомцы"
     page = MyPetsPage(web_driver_with_cookies)
     page.add_pet_click()
     time.sleep(3)
     page.cancel_click()
+    time.sleep(2)
+
+
+def test_add_pet_and_cross(web_driver_with_cookies):
+    """Тест на странице "Мои питомцы" кликает кнопку "Добавить" и закрывает окно крестиком """
+
+    # Переход на страницу "Мои питомцы"
+    page = MyPetsPage(web_driver_with_cookies)
+    page.add_pet_click()
+    time.sleep(3)
+    page.cross_click()
     time.sleep(2)
 
 

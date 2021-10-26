@@ -26,6 +26,7 @@ class MyPetsPage(BasePage):
         self.input_age = driver.find_element(*AddMyPetsLocators.MY_PETS_INPUT_AGE)
         self.add = driver.find_element(*AddMyPetsLocators.MY_PETS_BTN_ADD)
         self.cancel = driver.find_element(*AddMyPetsLocators.MY_PETS_BTN_CANCEL)
+        self.cross = driver.find_element(*AddMyPetsLocators.MY_PETS_BTN_CROSS)
 
 
     def my_pets_click(self):
@@ -43,6 +44,9 @@ class MyPetsPage(BasePage):
 
     def cancel_click(self):
         self.cancel.click()
+
+    def cross_click(self):
+        self.cross.click()
 
     def exit_btn_click(self):
         self.exit_btn.click()

@@ -40,3 +40,4 @@ class AddMyPetsLocators:
     MY_PETS_INPUT_AGE = (By.XPATH, '//input[@id="age"]')
     MY_PETS_BTN_ADD = (By.XPATH, '//button[@onclick="add_pet();"]')
     MY_PETS_BTN_CANCEL = (By.XPATH, '//button[@data-dismiss="modal"]')
+    MY_PETS_BTN_CROSS = (By.XPATH, '//span[@aria-hidden="true"]')
