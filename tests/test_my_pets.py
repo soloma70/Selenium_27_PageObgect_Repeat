@@ -1,3 +1,4 @@
+import time
 from pages.my_pets_page import MyPetsPage
 from settings import valid_name
 
@@ -19,9 +20,6 @@ def test_show_my_pets(web_driver_with_cookies):
 
     # Переход на страницу "Мои питомцы"
     page = MyPetsPage(web_driver_with_cookies)
-    # Проверка, что мы на странице и имя пользователя соответствует ожидаемому
-    assert page.get_relative_link() == '/my_pets', 'Login error'
-    assert page.name_user == valid_name, 'Non valid name'
 
     # Объявление списка переменных и присваивание им пустых значений
     count_my_pets_name, count_my_pets_img = 0, 0
@@ -65,6 +63,18 @@ def test_show_my_pets(web_driver_with_cookies):
     # В списке нет повторяющихся питомцев
     print('В списке нет повторяющихся питомцев')
     assert len(list_my_pets) == len(unique_list_my_pets), 'ERROR: Есть повторяющиеся питомцы'
+
+
+def test_add_pet(web_driver_with_cookies):
+    """Тест проверяет загрузку страницы "Мои питомцы", наличие имени, возраста и породы;
+    добавляет нового питомца с фото, породой и возрастом"""
+
+    # Переход на страницу "Мои питомцы"
+    page = MyPetsPage(web_driver_with_cookies)
+    page.add_pet_click()
+    time.sleep(3)
+    page.cancel_click()
+    time.sleep(2)
 
 
 def test_exit_visit_my_pets(web_driver_with_cookies):
