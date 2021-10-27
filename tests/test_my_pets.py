@@ -1,7 +1,6 @@
 import time, os
 from pages.my_pets_page import MyPetsPage
 from settings import *
-from selenium.webdriver.common.by import By
 
 
 def test_visit_my_pets(web_driver_with_cookies):
@@ -94,7 +93,7 @@ def test_add_pet_and_cross(web_driver_with_cookies):
     print('\nОкно добавления питомца успешно закрыто "крестиком"')
 
 
-def test_add_pet_and_add(web_driver_with_cookies):
+def test_add_pet_positiv(web_driver_with_cookies):
     """Тест на странице "Мои питомцы" проверяет окно добавления питомца
     и добавляет фото, имя, породу и возраст питомца """
 
@@ -109,22 +108,54 @@ def test_add_pet_and_add(web_driver_with_cookies):
     time.sleep(2)
     # Новая загрузка страницы "Мои питомцы"
     page_new = MyPetsPage(web_driver_with_cookies)
-    time.sleep(2)
-    # Проверяем. что последнее добавленые атрибут 'scr', имя, порода и возраст питомца соответствует заданному
+    # Проверяем, что последнее добавленые атрибут 'scr', имя, порода и возраст питомца соответствует заданному
     # - означает, что питомец добавлен.
     assert page_new.images_my_pets[-1].get_attribute('src') != '', 'ERROR: Ошибка добавления фото питомца'
     assert page_new.names_my_pets[-1].text == name_pet, 'ERROR: Ошибка добавления имени питомца'
     assert page_new.types_my_pets[-1].text == type_pet, 'ERROR: Ошибка добавления породы питомца'
     assert page_new.ages_my_pets[-1].text == age_pet, 'ERROR: Ошибка добавления возраста питомца'
-    print(f'\nПитомец: {name_pet}, {type_pet}, {age_pet} лет + фото успешно добавлен!')
+    print(f'\nПитомец {name_pet}, {type_pet}, {age_pet} лет + фото успешно добавлен!')
+
+
+def test_del_pet(web_driver_with_cookies):
+    """Тест на странице "Мои питомцы" удаляет последнего добавленого питомца в списке и проверяет удаление """
+
+    # Переход на страницу "Мои питомцы"
+    page = MyPetsPage(web_driver_with_cookies)
+    # Если питомцев нет - добавляем питомца
+    count_stat_before = page.my_pets_count_stat_int()
+    if count_stat_before == 0:
+        print('\nДобавляем питомца ...')
+        page.add_pet_click()
+        page.enter_photo(img_pet)
+        page.enter_name(name_pet)
+        page.enter_type(type_pet)
+        page.enter_age(age_pet)
+        page.add_click()
+    time.sleep(2)
+    page_new = MyPetsPage(web_driver_with_cookies)
+    count_stat_before = page_new.my_pets_count_stat_int()
+    # Получаем имя последнего и предпоследнего питомца
+    name_last_pet = page_new.names_my_pets[-1].text
+    page_new.del_pet_click()
+    time.sleep(2)
+    # Новая загрузка страницы "Мои питомцы"
+    page_new2 = MyPetsPage(web_driver_with_cookies)
+    count_stat_after = page_new2.my_pets_count_stat_int()
+
+    # Сравниваем количество питомцев до и после удаления.
+    assert count_stat_before - 1 == count_stat_after, 'ERROR: Ошибка удаления имени питомца'
+    print(f'\nПитомец {name_last_pet} успешно удален!')
 
 
 def test_exit_visit_my_pets(web_driver_with_cookies):
     """Тест проверяет кнопку выхода со страницы "Мои питомцы" """
 
     page = MyPetsPage(web_driver_with_cookies)
+    name_user = page.name_user
     page.exit_btn_click()
     # Проверка, что мы на стартовой странице
     assert web_driver_with_cookies.find_element_by_xpath(
         "//button[@class='btn btn-success']").text == 'Зарегистрироваться' \
         , 'ERROR: ошибка Log Out'
+    print(f'\nУспешный выход из пользования {name_user}')
