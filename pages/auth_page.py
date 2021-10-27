@@ -21,7 +21,7 @@ class AuthPage(BasePage):
     def btn_click(self):
         self.btn.click()
 
-    # Вспомашательные функции для добавления различных строк
+    # Вспомагательные функции для добавления различных строк
     def generate_string(n):
         return "x" * n
 
