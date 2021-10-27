@@ -106,8 +106,17 @@ def test_add_pet_and_add(web_driver_with_cookies):
     page.enter_type(type_pet)
     page.enter_age(age_pet)
     page.add_click()
-    print(f'Питомец {name_pet}, {type_pet}, {age_pet} + фото успешно добавлен!')
     time.sleep(2)
+    # Новая загрузка страницы "Мои питомцы"
+    page_new = MyPetsPage(web_driver_with_cookies)
+    time.sleep(2)
+    # Проверяем. что последнее добавленые атрибут 'scr', имя, порода и возраст питомца соответствует заданному
+    # - означает, что питомец добавлен.
+    assert page_new.images_my_pets[-1].get_attribute('src') != '', 'ERROR: Ошибка добавления фото питомца'
+    assert page_new.names_my_pets[-1].text == name_pet, 'ERROR: Ошибка добавления имени питомца'
+    assert page_new.types_my_pets[-1].text == type_pet, 'ERROR: Ошибка добавления породы питомца'
+    assert page_new.ages_my_pets[-1].text == age_pet, 'ERROR: Ошибка добавления возраста питомца'
+    print(f'\nПитомец: {name_pet}, {type_pet}, {age_pet} лет + фото успешно добавлен!')
 
 
 def test_exit_visit_my_pets(web_driver_with_cookies):
