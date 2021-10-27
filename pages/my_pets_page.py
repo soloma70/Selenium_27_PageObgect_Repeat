@@ -20,6 +20,7 @@ class MyPetsPage(BasePage):
         self.my_pets_count_stat = driver.find_element(*MyPetsLocators.MY_PETS_COUNT).text.split('\n')
         # Атрибуты добавления питомца
         self.add_pet = driver.find_element(*AddMyPetsLocators.MY_PETS_BTN_ADD_PET)
+        self.block_add_pet = driver.find_element(*AddMyPetsLocators.MY_PETS_BLOCK_ADD_PET)
         self.input_photo = driver.find_element(*AddMyPetsLocators.MY_PETS_INPUT_PHOTO)
         self.input_name = driver.find_element(*AddMyPetsLocators.MY_PETS_INPUT_NAME)
         self.input_type = driver.find_element(*AddMyPetsLocators.MY_PETS_INPUT_TYPE)
@@ -38,6 +39,22 @@ class MyPetsPage(BasePage):
 
     def add_pet_click(self):
         self.add_pet.click()
+
+    def enter_photo(self, value):
+        # self.input_photo.clear()
+        self.input_photo.send_keys(os.getcwd() + value)
+
+    def enter_name(self, value):
+        self.input_name.clear()
+        self.input_name.send_keys(value)
+
+    def enter_type(self, value):
+        self.input_type.clear()
+        self.input_type.send_keys(value)
+
+    def enter_age(self, value):
+        self.input_age.clear()
+        self.input_age.send_keys(value)
 
     def add_click(self):
         self.add.click()
