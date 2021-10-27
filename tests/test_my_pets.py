@@ -1,6 +1,7 @@
-import time
+import time, os
 from pages.my_pets_page import MyPetsPage
-from settings import valid_name
+from settings import *
+from selenium.webdriver.common.by import By
 
 
 def test_visit_my_pets(web_driver_with_cookies):
@@ -66,24 +67,46 @@ def test_show_my_pets(web_driver_with_cookies):
 
 
 def test_add_pet_and_cancel(web_driver_with_cookies):
-    """Тест на странице "Мои питомцы" проверяет окно добавления питомца и закрывает окно кнопкой "Отмена" """
+    """Тест на странице "Мои питомцы" проверяет окно добавления питомца
+    и закрывает окно кнопкой "Отмена" """
 
     # Переход на страницу "Мои питомцы"
     page = MyPetsPage(web_driver_with_cookies)
     page.add_pet_click()
-    time.sleep(3)
+    time.sleep(2)
     page.cancel_click()
     time.sleep(2)
+    assert page.block_add_pet.is_displayed() == False, 'ERROR: Окно добавления питомца не закрыто'
+    print('\nОкно добавления питомца успешно закрыто кнопкой "Отмена"')
 
 
 def test_add_pet_and_cross(web_driver_with_cookies):
-    """Тест на странице "Мои питомцы" проверяет окно добавления питомца и закрывает окно крестиком """
+    """Тест на странице "Мои питомцы" проверяет окно добавления питомца
+    и закрывает окно крестиком """
 
     # Переход на страницу "Мои питомцы"
     page = MyPetsPage(web_driver_with_cookies)
     page.add_pet_click()
-    time.sleep(3)
+    time.sleep(2)
     page.cross_click()
+    time.sleep(2)
+    assert page.block_add_pet.is_displayed() == False, 'ERROR: Окно добавления питомца не закрыто'
+    print('\nОкно добавления питомца успешно закрыто "крестиком"')
+
+
+def test_add_pet_and_add(web_driver_with_cookies):
+    """Тест на странице "Мои питомцы" проверяет окно добавления питомца
+    и добавляет фото, имя, породу и возраст питомца """
+
+    # Переход на страницу "Мои питомцы"
+    page = MyPetsPage(web_driver_with_cookies)
+    page.add_pet_click()
+    page.enter_photo(img_pet)
+    page.enter_name(name_pet)
+    page.enter_type(type_pet)
+    page.enter_age(age_pet)
+    page.add_click()
+    print(f'Питомец {name_pet}, {type_pet}, {age_pet} + фото успешно добавлен!')
     time.sleep(2)
 
 
