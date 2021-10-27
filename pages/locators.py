@@ -34,7 +34,8 @@ class MyPetsLocators:
 
 class AddMyPetsLocators:
     MY_PETS_BTN_ADD_PET = (By.XPATH, '//button[@class="btn btn-outline-success"]')
-    MY_PETS_INPUT_PHOTO = (By.XPATH, '//img[@id="pet_photo"]')
+    MY_PETS_BLOCK_ADD_PET = (By.ID, 'addPetsModal')
+    MY_PETS_INPUT_PHOTO = (By.ID, 'photo')
     MY_PETS_INPUT_NAME = (By.XPATH, '//input[@id="name"]')
     MY_PETS_INPUT_TYPE = (By.XPATH, '//input[@id="animal_type"]')
     MY_PETS_INPUT_AGE = (By.XPATH, '//input[@id="age"]')
