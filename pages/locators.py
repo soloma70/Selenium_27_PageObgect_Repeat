@@ -31,6 +31,7 @@ class MyPetsLocators:
     MY_PETS_TYPES = (By.CSS_SELECTOR, 'div#all_my_pets table tbody tr td:nth-of-type(2)')
     MY_PETS_AGE = (By.CSS_SELECTOR, 'div#all_my_pets table tbody tr td:nth-of-type(3)')
     MY_PETS_COUNT = (By.CSS_SELECTOR, 'html body div div div')
+    MY_PETS_DEL = (By.XPATH, '//div[@title="Удалить питомца"]')
 
 class AddMyPetsLocators:
     MY_PETS_BTN_ADD_PET = (By.XPATH, '//button[@class="btn btn-outline-success"]')
