@@ -29,7 +29,8 @@ class MyPetsPage(BasePage):
         self.add = driver.find_element(*AddMyPetsLocators.MY_PETS_BTN_ADD)
         self.cancel = driver.find_element(*AddMyPetsLocators.MY_PETS_BTN_CANCEL)
         self.cross = driver.find_element(*AddMyPetsLocators.MY_PETS_BTN_CROSS)
-
+        # Атрибуты удаления питомца
+        self.del_my_pets = driver.find_elements(*MyPetsLocators.MY_PETS_DEL)
 
     def my_pets_click(self):
         self.my_pets_btn.click()
@@ -65,6 +66,9 @@ class MyPetsPage(BasePage):
 
     def cross_click(self):
         self.cross.click()
+
+    def del_pet_click(self):
+        self.del_my_pets[-1].click()
 
     def refresh(self):
         self.driver.refresh()
