@@ -1,4 +1,4 @@
-import time
+import time, sys
 from pages.my_pets_page import MyPetsPage
 from settings import valid_name
 
@@ -150,6 +150,44 @@ def test_del_pet_positiv(web_driver_with_cookies):
     assert count_stat_before - 1 == count_stat_after, 'ERROR: Ошибка удаления имени питомца'
     print(f'\nПитомец {name_last_pet} успешно удален!')
 
+
+def test_del_pet_double_positiv(web_driver_with_cookies):
+    """Тест на странице "Мои питомцы" удаляет одинаковых питомцев, оставляя 1-го в списке и проверяет удаление
+    Тест красный для 0 или 1 питомца"""
+
+    # Переход на страницу "Мои питомцы"
+    page = MyPetsPage(web_driver_with_cookies)
+    # Если питомцев нет - добавляем питомца
+    count_stat_before = page.my_pets_count_stat_int()
+    if count_stat_before == 0 or count_stat_before == 1:
+        sys.exit("\nERROR: В списке мало питомцев. Воспользуйтесь другим тестом на удаление")
+
+    print()
+    for i in range(len(page.names_my_pets)):
+        name_pet = page.names_my_pets[i].text
+        print(name_pet)
+
+    # list_pet = page.list_pets
+    # page.add_pet_click()
+    # print(f"\nНет питомцев. Добавляем питомца {list_pet['name']}")
+    # page.enter_photo(list_pet['img'])
+    # page.enter_name(list_pet['name'])
+    # page.enter_type(list_pet['type'])
+    # page.enter_age(list_pet['age'])
+    # page.add_click()
+    # count_stat_before += 1
+    # time.sleep(2)
+    # page_new = MyPetsPage(web_driver_with_cookies)
+    # # Получаем имя последнего питомца на странице преред удалением
+    # name_last_pet = page_new.names_my_pets[-1].text
+    # page_new.del_pet_click()
+    # # Новая загрузка страницы "Мои питомцы"
+    # time.sleep(2)
+    # page_new2 = MyPetsPage(web_driver_with_cookies)
+    # count_stat_after = page_new2.my_pets_count_stat_int()
+    # # Сравниваем количество питомцев до и после удаления.
+    # assert count_stat_before - 1 == count_stat_after, 'ERROR: Ошибка удаления имени питомца'
+    # print(f'\nПитомец {name_last_pet} успешно удален!')
 
 def test_exit_visit_my_pets(web_driver_with_cookies):
     """Тест проверяет кнопку выхода со страницы "Мои питомцы" """
