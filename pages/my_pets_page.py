@@ -2,6 +2,8 @@ from .base_page import BasePage
 from .locators import MyPetsLocators, AddMyPetsLocators
 from .url_list import PetFriend
 import os
+from random import choice
+from settings import list_pest
 
 class MyPetsPage(BasePage):
     def __init__(self, driver, timeout=5):
@@ -20,6 +22,7 @@ class MyPetsPage(BasePage):
         # Атрибуты поиска количества питомцев из статистики пользователя
         self.my_pets_count_stat = driver.find_element(*MyPetsLocators.MY_PETS_COUNT).text.split('\n')
         # Атрибуты добавления питомца
+        self.list_pets = choice(list_pest)
         self.add_pet = driver.find_element(*AddMyPetsLocators.MY_PETS_BTN_ADD_PET)
         self.block_add_pet = driver.find_element(*AddMyPetsLocators.MY_PETS_BLOCK_ADD_PET)
         self.input_photo = driver.find_element(*AddMyPetsLocators.MY_PETS_INPUT_PHOTO)
@@ -31,6 +34,7 @@ class MyPetsPage(BasePage):
         self.cross = driver.find_element(*AddMyPetsLocators.MY_PETS_BTN_CROSS)
         # Атрибуты удаления питомца
         self.del_my_pets = driver.find_elements(*MyPetsLocators.MY_PETS_DEL)
+
 
     def my_pets_click(self):
         self.my_pets_btn.click()
@@ -75,3 +79,4 @@ class MyPetsPage(BasePage):
 
     def exit_btn_click(self):
         self.exit_btn.click()
+
